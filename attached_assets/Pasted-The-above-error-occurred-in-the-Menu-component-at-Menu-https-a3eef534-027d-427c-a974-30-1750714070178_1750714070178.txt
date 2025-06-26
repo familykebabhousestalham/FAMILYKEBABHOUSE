@@ -1,0 +1,46 @@
+The above error occurred in the <Menu> component:
+
+    at Menu (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/src/pages/menu.tsx:30:47)
+    at RenderedRoute (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:5455:26)
+    at Routes (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:6188:3)
+    at main
+    at div
+    at Provider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DWV4X2LQ.js?v=e190de85:55:15)
+    at TooltipProvider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=e190de85:2242:5)
+    at QueryClientProvider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=e190de85:2805:3)
+    at App (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/src/App.tsx?v=3_GYgfCzXefGfj5SKtJcL:33:20)
+    at Router (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:6131:13)
+    at HashRouter (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:9148:23)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+at Menu (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/src/pages/menu.tsx:30:47)
+at RenderedRoute (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:5455:26)
+at Routes (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:6188:3)
+at main
+at div
+at Provider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DWV4X2LQ.js?v=e190de85:55:15)
+at TooltipProvider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=e190de85:2242:5)
+at QueryClientProvider (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=e190de85:2805:3)
+at App (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/src/App.tsx?v=3_GYgfCzXefGfj5SKtJcL:33:20)
+at Router (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:6131:13)
+at HashRouter (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=e190de85:9148:23)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+at t.value (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+Cannot access 'getItemsByCategory' before initialization
+at Menu (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/src/pages/menu.tsx:36:32)
+at renderWithHooks (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:11548:26)
+at mountIndeterminateComponent (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:14926:21)
+at beginWork (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:15914:22)
+at beginWork$1 (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:19753:22)
+at performUnitOfWork (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:19198:20)
+at workLoopSync (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:19137:13)
+at renderRootSync (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:19116:15)
+at recoverFromConcurrentError (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:18736:28)
+at performConcurrentWorkOnRoot (https://a3eef534-027d-427c-a974-30e90be7af8d-00-1i1r70kmbbe07.spock.replit.dev/Family-kebab-house/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=e190de85:18684:30)

@@ -1,0 +1,72 @@
+On mobile we’ve found that our little setTimeout(…scrollIntoView…) inside the button’s onClick is unreliable (and often scrolls behind the sticky nav, or doesn’t fire at all on some phones). The fix is to:
+
+Use a React ref on your <section id="menu-content">…
+
+Remove the inline setTimeout scroll logic from each category button
+
+Add a useEffect that listens for activeCategory changes and calls scrollIntoView({ behavior:'smooth', block:'start' }) on that ref
+
+Give the section a scroll-margin-top equal to your sticky-nav height so the content isn’t hidden underneath it.
+
+Here’s the exact diff for client/src/pages/menu.tsx:
+
+diff
+--- a/client/src/pages/menu.tsx
++++ b/client/src/pages/menu.tsx
+@@ top of file, after your useState hooks:
+-  const [accessibilityMode, setAccessibilityMode] = useState(false);
++  const [accessibilityMode, setAccessibilityMode] = useState(false);
++  // ─── new: ref for scrolling into view ───
++  const menuContentRef = useRef<HTMLElement>(null);
+
+@@ Category Navigation Buttons (remove scroll logic)
+-  onClick={() => {
+-    setActiveCategory(category.id);
+-    announce(`Viewing ${category.name} category with ${itemCount} items`);
+-    // Smooth scroll to menu content
+-    setTimeout(() => {
+-      document.getElementById('menu-content')?.scrollIntoView({
+-        behavior: 'smooth',
+-        block: 'start'
+-      });
+-    }, 100);
+-  }}
++  onClick={() => {
++    setActiveCategory(category.id);
++    announce(`Viewing ${category.name} category with ${itemCount} items`);
++    setFocusedItemIndex(0);
++  }}
+
+@@ bottom of file, before the final return:
+-  return (
++  // ─── new: scroll into view when activeCategory changes ───
++  useEffect(() => {
++    if (menuContentRef.current) {
++      menuContentRef.current.scrollIntoView({
++        behavior: 'smooth',
++        block: 'start'
++      });
++    }
++  }, [activeCategory]);
++
++  return (
+@@ Menu Content section:
+-  <section className="py-12 relative" id="menu-content">
++  <section
++    className="py-12 relative"
++    id="menu-content"
++    ref={menuContentRef}
++    // ensure sticky nav doesn’t cover it:
++    style={{ scrollMarginTop: '4rem' }}
++  >
+And add at the top of the file:
+
+tsx
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
+What this does:
+
+• Removing the inline setTimeout makes us rely on a single, reliable useEffect • The ref’s scrollIntoView always fires after React has re-rendered your new items • scroll-margin-top prevents the sticky header from covering your dishes.
+
+Once you paste that in, rebuild and try on mobile:
+
+• Tap “Pizzas” → it will slide your pizza grid into view • Tap “Garlic Bread & Pizza Extras” → same reliably.

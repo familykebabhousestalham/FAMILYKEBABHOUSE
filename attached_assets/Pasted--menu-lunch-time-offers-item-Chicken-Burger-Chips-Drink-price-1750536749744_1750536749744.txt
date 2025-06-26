@@ -1,0 +1,118 @@
+{
+  "menu": {
+    "lunch_time_offers": [
+      { "item": "Chicken Burger + Chips & Drink", "price": 7.90 },
+      { "item": "¼ Pounder with Cheese + Chips & Drink", "price": 7.90 },
+      { "item": "½ Pounder with Double Cheese + Chips & Drink", "price": 9.50 },
+      { "item": "Medium Doner Meat + Chips & Drink", "price": 7.90 },
+      { "item": "Large Doner Meat + Chips & Drink", "price": 9.50 },
+      { "item": "10\" Margherita with 3 Toppings + Drink", "price": 9.50 },
+      { "item": "12\" Margherita with 3 Toppings + Drink", "price": 12.50 }
+    ],
+    "burgers": [
+      { "item": "½ Pound with Double Cheese", "single_price": 7.40, "meal_price": 10.70 },
+      { "item": "¼ Pounder with Cheese", "single_price": 5.50, "meal_price": 8.90 },
+      { "item": "Chicken Fillet Burger", "single_price": 6.00, "meal_price": 9.40 },
+      { "item": "Vegetable Burger", "single_price": 5.50, "meal_price": 8.90 },
+      { "item": "2 oz Burger with Cheese", "single_price": 3.50 },
+      { "item": "Chicken Filled Wrap", "single_price": 6.50, "meal_price": 9.90 },
+      { "item": "½ Chicken Filled Burger", "single_price": 8.00, "meal_price": 11.50 },
+      { "item": "Add doner on burger", "extra": 3.00 }
+    ],
+    "fried_chicken": [
+      { "pcs": 1, "single": 1.90, "with_chips": 4.90, "meal": 5.90 },
+      { "pcs": 2, "single": 3.80, "with_chips": 6.50, "meal": 7.50 },
+      { "pcs": 3, "single": 5.60, "with_chips": 8.00, "meal": 9.00 },
+      { "pcs": 4, "single": 6.50, "with_chips": 9.00, "meal": 10.00 }
+    ],
+    "chicken_bargain_meals": [
+      { "description": "6 pcs Chicken + 2 Chips & Coleslaw", "price": 14.00 },
+      { "description": "8 pcs Chicken + 3 Chips & Coleslaw", "price": 17.50 }
+    ],
+    "chicken_wings_strips": [
+      { "pcs": "4 Wings", "single": 4.40, "with_chips": 6.90, "meal": 7.90 },
+      { "pcs": "8 Wings", "single": 7.20, "with_chips": 9.70, "meal": 10.70 },
+      { "pcs": "6 Strips", "single": 6.90, "with_chips": 9.40, "meal": 10.40 }
+    ],
+    "chicken_nuggets": [
+      { "pcs": 6, "single": 4.00, "with_chips": 6.90, "meal": 7.90 },
+      { "pcs": 9, "single": 5.20, "with_chips": 7.90, "meal": 8.90 }
+    ],
+    "scampi": [
+      { "pcs": 6, "single": 4.00, "with_chips": 6.90, "meal": 7.90 },
+      { "pcs": 9, "single": 5.20, "with_chips": 7.90, "meal": 8.90 }
+    ],
+    "desserts": [
+      { "item": "Cheese Cake", "price": 3.00 },
+      { "item": "Fudge Cake", "price": 3.00 }
+    ],
+    "extras": {
+      "sauce_pots": [
+        { "size": "Small", "price": 0.70 },
+        { "size": "Large", "price": 1.50, "types": ["Chilli", "Garlic", "Ketchup", "BBQ", "Burger Sauce", "Mayonnaise"] }
+      ],
+      "sides_add_ons": [
+        { "item": "Chips", "small": 3.00, "large": 4.00 },
+        { "item": "Chips & Cheese", "small": 4.50, "large": 5.50 },
+        { "item": "Chips in Pitta", "price": 4.20 },
+        { "item": "Chips in Pitta & Cheese", "price": 5.90 },
+        { "item": "Onion Rings (8 pcs)", "price": 3.50 },
+        { "item": "Mozzarella Sticks (6 pcs)", "price": 5.20 },
+        { "item": "Salad in Pitta", "small": 4.50, "large": 5.50 },
+        { "item": "Box Salad", "small": 3.50, "large": 4.50 },
+        { "item": "Pitta Bread", "price": 1.00 },
+        { "item": "Coleslaw", "price": 2.50 },
+        { "item": "Potato Wedges", "price": 3.50 },
+        { "item": "Garlic Mushroom", "price": 4.50 }
+      ]
+    },
+    "drinks": [
+      { "type": "Cans", "price": 1.40 },
+      { "type": "Bottles", "price": 3.50 },
+      { "type": "Water", "price": 1.00 }
+    ],
+    "kids_meal": [
+      { "description": "4 Nuggets + Chips & Drink", "price": 6.20 },
+      { "description": "2 oz Burger + Chips & Drink", "price": 6.20 }
+    ],
+    "pizzas": [
+      { "id": 1, "name": "Margherita", "ingredients": ["Mozzarella cheese", "Tomato sauce"], "price10": 8.00, "price12": 10.00 },
+      { "id": 2, "name": "Pepperoni", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Double pepperoni"], "price10": 9.40, "price12": 12.40 },
+      { "id": 3, "name": "Ham & Pineapple", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Ham", "Pineapple"], "price10": 9.40, "price12": 12.40 },
+      { "id": 4, "name": "Ham & Mushroom", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Ham", "Mushroom"], "price10": 9.40, "price12": 12.40 },
+      { "id": 5, "name": "Chicken & Mushroom", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Chicken", "Mushroom"], "price10": 9.40, "price12": 12.40 },
+      { "id": 6, "name": "Chicken & Sweetcorn", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Chicken", "Sweetcorn"], "price10": 9.40, "price12": 12.40 },
+      { "id": 7, "name": "Americano", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Salami", "Sweetcorn"], "price10": 9.40, "price12": 12.40 },
+      { "id": 8, "name": "Pepperoni Plus", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Pepperoni", "Red onion", "Jalapeño"], "price10": 9.90, "price12": 13.20 },
+      { "id": 9, "name": "Ham Supreme", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Mushroom", "Ham", "Red onion"], "price10": 9.90, "price12": 13.20 },
+      { "id": 10, "name": "Chicken Supreme", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Mushroom", "Chicken", "Red onion"], "price10": 9.90, "price12": 13.20 },
+      { "id": 11, "name": "Vegetarian V", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Onion", "Mushroom", "Peppers", "Sweetcorn", "Pineapple"], "price10": 9.90, "price12": 13.20 },
+      { "id": 12, "name": "Spicy Vegetarian V", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Onion", "Mushroom", "Jalapeño", "Sweetcorn", "Fresh tomato"], "price10": 9.90, "price12": 13.20 },
+      { "id": 13, "name": "Spicy Hot One", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Pepperoni", "Spicy beef", "Onion", "Mushroom", "Jalapeño"], "price10": 9.90, "price12": 13.20 },
+      { "id": 14, "name": "Seafood", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Prawns", "Tuna", "Anchovies"], "price10": 9.90, "price12": 13.20 },
+      { "id": 15, "name": "Meat Specials", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Ham", "Pepperoni", "Spicy beef", "Chicken"], "price10": 9.90, "price12": 13.20 },
+      { "id": 16, "name": "BBQ Pizza", "ingredients": ["Mozzarella cheese", "BBQ sauce", "Bacon", "Onion", "Chicken", "Green peppers"], "price10": 9.90, "price12": 13.20 },
+      { "id": 17, "name": "Doner Pizza", "ingredients": ["Mozzarella cheese", "Tomato sauce", "Onion", "Doner meat", "Fresh tomato"], "price10": 9.90, "price12": 13.20 }
+    ],
+    "garlic_bread_extras": [
+      { "item": "Garlic Bread V", "price10": 5.00, "price12": 7.00 },
+      { "item": "Garlic Bread with Cheese", "price10": 7.00, "price12": 9.00 },
+      { "item": "Stuffed Crust Cheese", "price10": 2.00, "price12": 3.00 },
+      { "item": "Extra Topping (each)", "price10": 1.40, "price12": 1.80 }
+    ],
+    "pizza_offers": [
+      { "offer": "2× 10'' pizzas from set-menu", "price": 17.20 },
+      { "offer": "2× 12'' pizzas from set-menu", "price": 22.50 }
+    ],
+    "family_deal": [
+      { "description": "10'' pizza with 3 toppings + 6 pcs Chicken nuggets + 1 Chicken Fillet Burger + 2 pcs Fried Chicken + 2× chips + 1 bottle soft drink", "price10_deal": 26.90, "price12_deal": 28.90 }
+    ],
+    "chicken_combo_meal": [
+      { "description": "3 pcs Chicken + 4 Spicy Wings + Chips & Drink", "price": 11.50 }
+    ],
+    "kebabs": [
+      { "item": "Doner Kebab", "description": "Fresh lamb,...", "medium": 8.50, "large": 10.50, "xlarge": 12.50 },
+      "..."
+    ]
+  }
+}

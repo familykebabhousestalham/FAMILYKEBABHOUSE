@@ -1,0 +1,37 @@
+.nutritional-backdrop {
+  z-index: 99999;
+}
+
+.nutritional-header-anim {
+  animation-duration: 500ms !important;
+  animation-fill-mode: both !important;
+}
+
+.nutritional-cell-anim {
+  animation-duration: 600ms !important;
+  animation-fill-mode: both !important;
+}
+.nutritional-label-anim {
+  animation-duration: 400ms !important;
+  animation-fill-mode: both !important;
+}
+.nutritional-value-anim {
+  animation-duration: 500ms !important;
+  animation-fill-mode: both !important;
+}
+
+/* Use JS to set animation-delay via data-delay attribute if needed */
+.nutritional-cell-anim,
+.nutritional-label-anim,
+.nutritional-value-anim {
+  /* You can use a utility or inline style for animation-delay if needed,
+     or use a CSS-in-JS solution for dynamic delays. */
+}
+
+.nutritional-tooltip-overlay {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+}

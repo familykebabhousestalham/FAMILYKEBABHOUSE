@@ -1,0 +1,12 @@
+.ping-delay-500 {
+  animation-delay: 0.5s !important;
+}
+.ping-delay-1000 {
+  animation-delay: 1s !important;
+}
+.ping-delay-1500 {
+  animation-delay: 1.5s !important;
+}
+.celebration-emoji-img {
+  display: inline-block;
+}

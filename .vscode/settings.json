@@ -1,0 +1,11 @@
+{
+  // Tell VSCode to treat .css as PostCSS/Tailwind
+  "files.associations": {
+    "*.css": "postcss"
+  },
+
+  // turn off built-in CSS validation since Tailwind/PostCSS handles it
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false
+}

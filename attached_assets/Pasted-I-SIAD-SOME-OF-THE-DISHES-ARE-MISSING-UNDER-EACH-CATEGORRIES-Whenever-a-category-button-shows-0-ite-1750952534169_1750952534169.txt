@@ -1,0 +1,42 @@
+I SIAD SOME OF THE DISHES ARE MISSING UNDER EACH CATEGORRIES
+Whenever a category button shows “0 items,” it means the category string on those MenuItemData entries doesn’t exactly match one of the categories IDs. Let’s quickly sanity-check which categories your code is actually using, and then fix any typos.
+
+Add a quick console-dump at the top of your component to see every category key and how many items you have for it:
+
+ts
+useEffect(() => {
+  const counts = menuData.reduce<Record<string,number>>((acc, item) => {
+    acc[item.category] = (acc[item.category] || 0) + 1;
+    return acc;
+  }, {});
+  console.table(counts);
+}, []);
+This will print e.g.:
+
+┌───────────────────────────────┬────────┐ │ (index) │ Values │ ├───────────────────────────────┼────────┤ │ 'burgers' │ 8 │ │ 'pizzas' │ 17 │ │ 'garlic-bread-pizza-extras' │ 4 │ │ 'some-misspelled-category' │ 3 │ ← OOPS └───────────────────────────────┴────────┘
+
+Compare that list to your categories array in client/src/data/menu-data.ts. Any key in the counts table that’s not in categories needs to be added (or fixed if it’s a typo).
+
+Fix example: suppose your pizza-dessert items ended up under pizza-dessert but your nav uses pizzas. Open menu-data-new.ts and correct:
+
+diff
+-  { id: "fancy-dessert-pizza", name: "...", category: "pizza-dessert", ... },
++  { id: "fancy-dessert-pizza", name: "...", category: "pizzas", ... },
+If you’d rather never manually sync these again, derive categories automatically:
+
+ts
+// In menu.tsx, instead of importing a hard-coded array:
+const categories = useMemo(
+  () =>
+    Array.from(new Set(menuData.map((i) => i.category))).map((id) => ({
+      id,
+      name: id
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (l) => l.toUpperCase()),
+      icon: "", // add a lookup table for icons if you like
+    })),
+  [menuData]
+);
+Then your nav will always show exactly the categories your data actually contains—no more missing items.
+
+— Run the console table, patch any mismatched category strings in menu-data-new.ts (or in your categories array), rebuild, and you’ll see all your 17 pizzas, 4 garlic breads, and every other dish appear under the right tab.2

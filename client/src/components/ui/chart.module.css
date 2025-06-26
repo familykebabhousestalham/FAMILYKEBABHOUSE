@@ -1,0 +1,32 @@
+.indicator {
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  background: var(--chart-indicator-color, #ccc);
+  border-color: var(--chart-indicator-color, transparent);
+}
+.dot {
+  height: 1rem;
+  width: 1rem;
+}
+.line {
+  width: 0.25rem;
+  height: 1rem;
+}
+.dashed {
+  width: 0;
+  border-width: 1.5px;
+  border-style: dashed;
+  background: transparent;
+}
+.nestDashed {
+  margin-top: 0.125rem;
+  margin-bottom: 0.125rem;
+}
+.legendColor {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background-color: var(--chart-legend-color, transparent);
+}

@@ -1,0 +1,73 @@
+Here’s a different, CSS-first approach that works on any mobile (no more fiddling with scroll margins or JS offsets). We’ll turn your sticky nav into a truly fixed header, then simply pad your content underneath so it never gets covered.
+
+— — —
+
+1) Convert your nav wrapper to fixed In client/src/pages/menu.tsx, find:
+
+jsx
+{/* Category Navigation */}
+<div className="sticky top-0 z-40 bg-white shadow-lg py-4">
+  …your buttons…
+</div>
+and replace it with:
+
+jsx
+{/* Category Navigation */}
+<div className="fixed top-0 inset-x-0 z-40 bg-white shadow-lg h-16 sm:h-20 flex items-center">
+  <div className="container mx-auto px-6">
+    {/* …your buttons… */}
+  </div>
+</div>
+• fixed top-0 inset-x-0 pins it to the very top across the full width. • h-16 sm:h-20 gives it a consistent height (4rem on phones, 5rem on tablets+). • Keep your z-40 so it sits above all content.
+
+2) Pad all the page content below the nav Wrap your menu content in a padding container that matches the header height. Immediately after the </div> above, insert:
+
+jsx
+{/* Push page content below fixed nav */}
+<div className="pt-16 sm:pt-20">
+  {/* Everything else (header, special offers, menu-content section, voice controls…) */}
+</div>
+That ensures on mobile you always have 4rem of blank space at top, and on desktop 5rem. Your dishes will slide into view underneath, never behind.
+
+3) Remove all scroll-margin / scroll-padding / JS-scroll hacks
+
+Delete any style={{ scrollMarginTop: … }} or Tailwind scroll-mt-… on #menu-content.
+
+Remove the useEffect calling scrollIntoView.
+
+Remove global html { scroll-padding-top } rules if you like (they’re no longer needed).
+
+— — —
+
+Final diff to paste into Replit AI
+
+diff
+--- a/client/src/pages/menu.tsx
++++ b/client/src/pages/menu.tsx
+@@
+-          {/* Category Navigation */}
+-          <div className="sticky top-0 z-40 bg-white shadow-lg py-4">
++          {/* Category Navigation - now fixed */}
++          <div className="fixed top-0 inset-x-0 z-40 bg-white shadow-lg h-16 sm:h-20 flex items-center">
+             <div className="container mx-auto px-6">
+@@
+-          {/* Menu Content */}
+-          <section
+-            id="menu-content"
+-            ref={menuContentRef}
+-            className="pt-32 sm:pt-16 py-8 relative"
+-          >
++          {/* Spacing container to push content below fixed nav */}
++          <div className="pt-16 sm:pt-20">
++            {/* Menu Content */}
++            <section
++              id="menu-content"
++              ref={menuContentRef}
++              className="py-8 relative"
++            >
+After that diff:
+
+• Your nav is permanently fixed at the top. • All content is padded down by the exact same height—no overlap ever. • You can now scrap any JS-scroll logic you’d been chasing.
+
+Give it a rebuild on your phone; the dishes will always appear fully visible beneath the category bar.
+

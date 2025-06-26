@@ -1,0 +1,89 @@
+const getPrice = () => {
+    if (item.singlePrice) return item.singlePrice;
+    if (item.price) return item.price;
+    if (item.priceMedium && selectedSize === 'medium') return item.priceMedium;
+    if (item.priceLarge && selectedSize === 'large') return item.priceLarge;
+    if (item.priceXLarge && selectedSize === 'x-large') return item.priceXLarge;
+    if (item.priceSmall && selectedSize === 'small') return item.priceSmall;
+    return null;
+  };
+
+  const hasMultipleSizes = !!(item.priceMedium || item.priceLarge || item.priceXLarge);
+
+  return (
+    <Card 
+      ref={itemRef}
+      className={`group cursor-pointer transition-all duration-300 hover:shadow-lg border-2 ${
+        isFocused 
+          ? 'border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20' 
+          : 'border-transparent hover:border-primary/30'
+      } ${isKebabFeast ? 'relative overflow-hidden' : ''}`}
+      onClick={onSelect}
+      onFocus={onFocus}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`${item.name} - ${item.description} - Price: £${getPrice()?.toFixed(2) || 'N/A'}. Press Enter to select, O to order, I for nutrition info`}
+      aria-describedby={`item-${item.id}-description`}
+    >
+      {isKebabFeast && (
+        <>
+          {/* Rotating Border Animation */}
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-accent-gold via-primary to-accent-gold animate-spin-slow opacity-75"></div>
+          <div className="absolute inset-1 bg-white rounded-lg"></div>
+          
+          {/* Floating Sparkles */}
+          <div className="absolute top-2 right-2 animate-bounce">✨</div>
+          <div className="absolute top-4 left-2 animate-pulse delay-150">🌟</div>
+          <div className="absolute bottom-2 right-4 animate-bounce delay-300">⭐</div>
+        </>
+      )}
+
+      <CardContent className={`p-6 ${isKebabFeast ? 'relative z-10' : ''}`}>
+        <div className="flex justify-between items-start mb-3">
+          <div className="flex-1">
+            <h3 className={`font-poppins text-lg font-bold text-charcoal mb-2 group-hover:text-primary transition-colors ${
+              isKebabFeast ? 'text-2xl bg-gradient-to-r from-primary to-accent-gold bg-clip-text text-transparent' : ''
+            }`}>
+              {item.name}
+              {isKebabFeast && (
+                <Badge className="ml-2 bg-gradient-to-r from-accent-gold to-yellow-500 text-charcoal font-bold animate-pulse">
+                  PREMIUM FEAST
+                </Badge>
+              )}
+            </h3>
+            
+            {item.description && (
+              <p 
+                id={`item-${item.id}-description`}
+                className="text-gray-600 text-sm mb-3 leading-relaxed"
+              >
+                {item.description}
+              </p>
+            )}
+
+            {hasMultipleSizes && (
+              <SizeSelector
+                sizes={{
+                  ...(item.priceSmall && { small: item.priceSmall }),
+                  ...(item.priceMedium && { medium: item.priceMedium }),
+                  ...(item.priceLarge && { large: item.priceLarge }),
+                  ...(item.priceXLarge && { 'x-large': item.priceXLarge })
+                }}
+                selectedSize={selectedSize}
+                onSizeChange={setSelectedSize}
+              />
+            )}
+          </div>
+          
+          <div className="flex flex-col items-end space-y-2">
+            <PriceBadge
+              price={getPrice()}
+              isSpecial={item.isSpecial}
+              isKebabFeast={isKebabFeast}
+              isFamilyDeal={isFamilyDeal}
+            />
+            
+            <NutritionalInfoTooltip item={item} />
+          </div>
+        </div>

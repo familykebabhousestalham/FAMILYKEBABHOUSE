@@ -1,0 +1,38 @@
+/* Animation durations for spinning rings */
+.animation-spin-gpu-3s {
+  animation-duration: 3s !important;
+}
+.animation-spin-gpu-2s-reverse {
+  animation-duration: 2s !important;
+  animation-direction: reverse !important;
+}
+.animation-spin-gpu-4s {
+  animation-duration: 4s !important;
+}
+
+/* Animation delays for sparkles and icons */
+.animation-bounce-gpu-delay-0 {
+  animation-delay: 0s !important;
+}
+.animation-bounce-gpu-delay-05 {
+  animation-delay: 0.5s !important;
+}
+.animation-bounce-gpu-delay-1 {
+  animation-delay: 1s !important;
+}
+.animation-bounce-gpu-delay-15 {
+  animation-delay: 1.5s !important;
+}
+.animation-bounce-gpu-delay-2 {
+  animation-delay: 2s !important;
+}
+.animation-bounce-gpu-delay-25 {
+  animation-delay: 2.5s !important;
+}
+.animation-bounce-gpu-delay-02 {
+  animation-delay: 0.2s !important;
+}
+.animation-bounce-gpu-delay-04 {
+  animation-delay: 0.4s !important;
+}
+

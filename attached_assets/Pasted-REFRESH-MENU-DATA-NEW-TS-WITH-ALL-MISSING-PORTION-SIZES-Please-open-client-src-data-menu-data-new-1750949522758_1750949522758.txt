@@ -1,0 +1,130 @@
+REFRESH MENU‐DATA‐NEW.TS WITH ALL MISSING PORTION SIZES
+
+Please open client/src/data/menu-data-new.ts and replace or extend the exported MenuItemData array so it includes the following entries (with correct fields, types and categories). Use `singlePrice` for items sold “meal only” or single & meal if needed; use `priceSmall`/`priceMedium`/`priceLarge` for burgers & chicken pieces; use `price10inches`/`price12inches` for pizzas. Follow this pattern exactly:
+
+1) Category: “lunch-time-offers”  
+  - id: "chicken-burger-chips-drink"  
+    name: "Chicken Burger – Chips & Drink"  
+    description: "Lunch Time Offer – includes chips & drink"  
+    category: "lunch-time-offers"  
+    singlePrice: 7.90  
+  - id: "quarter-pounder-cheese-chips-drink"  
+    name: "¼ Pounder with Cheese – Chips & Drink"  
+    description: "Lunch Time Offer – includes chips & drink"  
+    category: "lunch-time-offers"  
+    singlePrice: 7.90  
+  - id: "half-pound-double-cheese-chips-drink"  
+    name: "½ Pounder with Double Cheese – Chips & Drink"  
+    description: "Lunch Time Offer – includes chips & drink"  
+    category: "lunch-time-offers"  
+    singlePrice: 9.50  
+  - id: "medium-doner-meat-chips-drink"  
+    name: "Medium Doner Meat – Chips & Drink"  
+    description: "Lunch Time Offer – includes chips & drink"  
+    category: "lunch-time-offers"  
+    singlePrice: 7.90  
+  - id: "large-doner-meat-chips-drink"  
+    name: "Large Doner Meat – Chips & Drink"  
+    description: "Lunch Time Offer – includes chips & drink"  
+    category: "lunch-time-offers"  
+    singlePrice: 9.50  
+  - id: "pizza-12in-3toppings-drink"  
+    name: "12\" Margherita with 3 Toppings & Drink"  
+    description: "Lunch Time Offer – includes drink"  
+    category: "lunch-time-offers"  
+    price12inches: 12.50  
+  - id: "pizza-10in-3toppings-drink"  
+    name: "10\" Margherita with 3 Toppings & Drink"  
+    description: "Lunch Time Offer – includes drink"  
+    category: "lunch-time-offers"  
+    price10inches: 9.50  
+
+2) Category: “burgers”  
+  *(fields: priceSmall=single, priceMedium=meal)*  
+  - id: "half-pound-double-cheese"  
+    name: "½ Pound with Double Cheese"  
+    category: "burgers"  
+    priceSmall: 7.40  
+    priceMedium: 10.70  
+  - id: "quarter-pounder-cheese"  
+    name: "¼ Pounder with Cheese"  
+    category: "burgers"  
+    priceSmall: 5.50  
+    priceMedium: 8.90  
+  - id: "chicken-fillet-burger"  
+    name: "Chicken Fillet Burger"  
+    category: "burgers"  
+    priceSmall: 6.00  
+    priceMedium: 9.40  
+  - id: "vegetable-burger"  
+    name: "Vegetable Burger"  
+    category: "burgers"  
+    priceSmall: 5.50  
+    priceMedium: 8.90  
+  - id: "2oz-burger-cheese"  
+    name: "2 oz Burger with Cheese"  
+    category: "burgers"  
+    singlePrice: 3.50  
+  - id: "chicken-filled-wrap"  
+    name: "Chicken Filled Wrap"  
+    category: "burgers"  
+    priceSmall: 6.50  
+    priceMedium: 9.90  
+  - id: "half-chicken-filled-burger"  
+    name: "½ Chicken Filled Burger"  
+    category: "burgers"  
+    priceSmall: 8.00  
+    priceMedium: 11.50  
+  - id: "add-doner-on-burger"  
+    name: "Add Doner on Burger"  
+    category: "burgers"  
+    singlePrice: 3.00  
+
+3) Category: “fried-chicken” (pieces)  
+  *(priceSmall=single, priceMedium=with chips, priceLarge=meal)*  
+  - id: "1pc-chicken" … priceSmall:1.90 priceMedium:4.90 priceLarge:5.90  
+  - id: "2pc-chicken" … 3.80 / 6.50 / 7.50  
+  - id: "3pc-chicken" … 5.60 / 8.00 / 9.00  
+  - id: "4pc-chicken" … 6.50 / 9.00 / 10.00  
+
+4) Category: “chicken-bargain-meals”  
+  - id: "6pc-chicken-bargain" name: "6 pcs Chicken + 2 Chips & Coleslaw" singlePrice:14.00  
+  - id: "8pc-chicken-bargain" name: "8 pcs Chicken + 3 Chips & Coleslaw" singlePrice:17.50  
+
+5) Category: “chicken-wings-strips”  
+  - id: "4pc-spicy-wings" … priceSmall:4.40 priceMedium:6.90 priceLarge:7.90  
+  - id: "8pc-spicy-wings" … 7.20 / 9.70 / 10.70  
+  - id: "6pc-chicken-strips" … 6.90 / 9.40 / 10.40  
+
+6) Category: “chicken-nuggets”  
+  - id: "6pc-nuggets" … 4.00 / 6.90 / 7.90  
+  - id: "9pc-nuggets" … 5.20 / 7.90 / 8.90  
+
+7) Category: “scampi”  
+  - id: "6pc-scampi" … 4.00 / 6.90 / 7.90  
+  - id: "9pc-scampi" … 5.20 / 7.90 / 8.90  
+
+8) Category: “desserts”  
+  - id: "cheesecake" name: "Cheese Cake" singlePrice:3.00  
+  - id: "fudge-cake" name: "Fudge Cake" singlePrice:3.00  
+
+9) Category: “extras”  
+  - id: "small-sauce-pot" singlePrice:0.70 description:"Small pot of sauce"  
+  - id: "large-sauce-pot" singlePrice:1.50 description:"Large pot of sauce"  
+  - id: "chips-small" singlePrice:3.00 description:"Chips (small)"  
+  - id: "chips-large" singlePrice:4.00 description:"Chips (large)"  
+  - id: "chips-cheese-small" singlePrice:4.50 description:"Chips & Cheese (small)"  
+  - id: "chips-cheese-large" singlePrice:5.50 description:"Chips & Cheese (large)"  
+  - …and so on for Onion Rings, Mozzarella Sticks, Salads, Pitta, Coleslaw, Wedges, Mushrooms  
+
+10) Category: “drinks”, “kids-meals”, “pizzas”, “garlic-bread-pizza-extras”, “pizza-offers”, “family-deals”, “chicken-combo-meals”, “kebab-extras”, “wraps”, “combination-kebabs”  
+
+Use the above patterns to add every item you listed, making sure each object in the array has:  
+• a unique `id` (kebab-case)  
+• `name` string  
+• optional `description` string  
+• `category` string  
+• numeric price fields (`singlePrice`, `priceSmall`, `priceMedium`, `priceLarge`, `price10inches`, `price12inches`)  
+• omit unused price keys for that item  
+
+Please return the full contents of `menu-data-new.ts` after you’ve injected all entries.```

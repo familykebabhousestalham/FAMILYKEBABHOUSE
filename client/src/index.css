@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  /* scroll-padding-top: 8rem;    mobile offset for sticky navigation - disabled for dynamic offset */
+}
+
+@media (min-width: 640px) {
+  html {
+    /* scroll-padding-top: 4rem;   desktop offset for sticky navigation - disabled for dynamic offset */
+  }
+}
+
+:root {
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 0 0% 20%; /* #333333 */
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 0 98% 44%; /* #E10600 Brand Primary Red */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --secondary: 34 96% 59%; /* #F7B733 Accent Gold */
+  --secondary-foreground: 0 0% 20%; /* #333333 */
+  --accent: 34 96% 59%; /* #F7B733 Accent Gold */
+  --accent-foreground: 0 0% 20%; /* #333333 */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  
+  /* Family Kebab House Brand Colors */
+  --brand-primary: 0 98% 44%; /* #E10600 */
+  --brand-charcoal: 0 0% 13%; /* #222222 */
+  --accent-gold: 34 96% 59%; /* #F7B733 */
+  --text-light: 0 0% 100%; /* #FFFFFF */
+  --text-dark: 0 0% 20%; /* #333333 */
+  --link-hover: 0 100% 39%; /* #C80000 */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 351 87% 50%; /* #D32F2F */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 130 49% 45%; /* #388E3C */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 32 100% 50%; /* #FF6F00 */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+  }
+
+  /* Custom utility classes */
+  .text-charcoal {
+    color: hsl(var(--brand-charcoal));
+  }
+
+  .bg-charcoal {
+    background-color: hsl(var(--brand-charcoal));
+  }
+
+  .text-brand-primary {
+    color: hsl(var(--brand-primary));
+  }
+
+  .bg-brand-primary {
+    background-color: hsl(var(--brand-primary));
+  }
+
+  .text-accent-gold {
+    color: hsl(var(--accent-gold));
+  }
+
+  .bg-accent-gold {
+    background-color: hsl(var(--accent-gold));
+  }
+}
+
+/* Custom animations for slideshow */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* Pulse effect for food images */
+@keyframes food-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-food-pulse {
+  animation: food-pulse 3s ease-in-out infinite;
+}
+
+/* Floating animation for emojis */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Enhanced animations for special deals */
+@keyframes spin-gpu {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-gpu {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes pulse-optimized {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-spin-gpu {
+  animation: spin-gpu 1s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.animate-bounce-gpu {
+  animation: bounce-gpu 1s infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.animate-pulse-optimized {
+  animation: pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+  .hover-brand-primary:hover {
+    color: hsl(var(--link-hover));
+  }
+
+/* Mobile-first responsive utilities */
+@layer components {
+  .mobile-container {
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+  }
+  
+  @media (min-width: 640px) {
+    .mobile-container {
+      padding-left: 1.5rem; /* sm:px-6 */
+      padding-right: 1.5rem; /* sm:px-6 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-container {
+      padding-left: 2rem; /* lg:px-8 */
+      padding-right: 2rem; /* lg:px-8 */
+    }
+  }
+
+  .mobile-text-responsive {
+    font-size: 1rem; /* text-base */
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-text-responsive {
+      font-size: 1.125rem; /* text-lg */
+    }
+  }
+
+  .mobile-heading-responsive {
+    font-size: 1.25rem; /* text-xl */
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-heading-responsive {
+      font-size: 1.5rem; /* text-2xl */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-heading-responsive {
+      font-size: 1.875rem; /* text-3xl */
+    }
+  }
+
+  .mobile-button-responsive {
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem; /* py-3 */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+    font-size: 1rem; /* text-base */
+    min-height: 48px; /* min-h-[48px] */
+    touch-action: manipulation; /* touch-manipulation */
+  }
+
+  .mobile-card-responsive {
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl */
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-card-responsive {
+      padding: 1.5rem; /* md:p-6 */
+      border-radius: 1rem; /* md:rounded-2xl */
+    }
+  }
+
+  .mobile-grid-responsive {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+    gap: 1rem; /* gap-4 */
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-grid-responsive {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+      gap: 1.5rem; /* md:gap-6 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-grid-responsive {
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+    }
+  }
+
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    min-height: 44px; /* min-h-[44px] */
+    min-width: 44px; /* min-w-[44px] */
+    touch-action: manipulation; /* touch-manipulation */
+  }
+
+  /* Prevent content squishing on mobile */
+  .no-squish {
+    @apply min-w-0 flex-shrink-0;
+  }
+
+  .text-no-wrap {
+    @apply whitespace-nowrap overflow-hidden text-ellipsis;
+  }
+
+  /* Mobile menu improvements */
+  .mobile-menu-item {
+    @apply py-3 px-4 text-base font-medium border-b border-gray-100 last:border-b-0;
+  }
+
+  .mobile-price-display {
+    @apply text-lg md:text-xl font-bold;
+  }
+
+  .mobile-spacing {
+    @apply space-y-3 md:space-y-4;
+  }
+
+  /* Enhanced mobile typography */
+  .mobile-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold leading-tight;
+  }
+
+  .mobile-subtitle {
+    @apply text-lg md:text-xl font-semibold leading-snug;
+  }
+
+  .mobile-body {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-button {
+    @apply px-3 py-2 md:px-4 md:py-3 text-sm md:text-base font-medium min-h-[44px] rounded-lg;
+  }
+
+  /* Mobile form elements */
+  .mobile-input {
+    @apply px-4 py-3 text-base rounded-lg border-2 min-h-[48px];
+  }
+
+  /* Mobile card layouts */
+  .mobile-card {
+    @apply p-4 md:p-6 rounded-xl shadow-lg bg-white;
+  }
+
+  /* Mobile pricing layouts */
+  .mobile-price-grid {
+    @apply grid gap-3 md:gap-4;
+  }
+
+  .mobile-price-label {
+    @apply text-sm md:text-base text-center font-medium;
+  }
+
+  .mobile-price-value {
+    @apply text-lg md:text-xl text-center font-bold;
+  }
+
+  /* Mobile button sizing */
+  .mobile-btn-small {
+    @apply px-3 py-2 text-sm md:text-base min-h-[44px] rounded-lg;
+  }
+
+  .mobile-btn-default {
+    @apply px-4 py-3 text-base md:text-lg min-h-[48px] rounded-lg;
+  }
+
+  /* Mobile image handling */
+  .mobile-image {
+    @apply w-full h-auto rounded-lg object-cover;
+  }
+
+  /* Mobile spacing utilities */
+  .mobile-section-spacing {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  .mobile-content-spacing {
+    @apply mb-6 md:mb-8 lg:mb-12;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Improve scrolling performance on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent zoom on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Better tap targets */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Mobile menu category buttons */
+  .menu-category-btn {
+    @apply px-3 py-2 text-sm font-medium min-h-[44px] flex-1 text-center;
+  }
+
+  /* Mobile pricing displays */
+  .price-display-mobile {
+    @apply text-center space-y-2;
+  }
+
+  /* Mobile card content */
+  .mobile-card-content {
+    @apply space-y-3;
+  }
+
+  /* Mobile flex layouts */
+  .mobile-flex-stack {
+    @apply flex flex-col space-y-4;
+  }
+
+  /* Mobile grid layouts */
+  .mobile-grid-single {
+    @apply grid grid-cols-1 gap-4;
+  }
+
+  .mobile-grid-double {
+    @apply grid grid-cols-2 gap-3;
+  }
+
+  .mobile-grid-triple {
+    @apply grid grid-cols-3 gap-2;
+  }
+}
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-dancing {
+    font-family: 'Dancing Script', cursive;
+  }
+
+@layer components {
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom button hover effects */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  /* Menu category transition */
+  .menu-category {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Image overlay effects */
+  .hero-overlay {
+    background: linear-gradient(rgba(46, 46, 46, 0.7), rgba(46, 46, 46, 0.7));
+  }
+
+  /* Mobile-first responsive utilities */
+  .mobile-optimized {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .mobile-margin {
+    @apply mb-4 sm:mb-6 lg:mb-8;
+  }
+
+  /* Performance optimizations for special deals */
+  .special-deal-card {
+    will-change: transform, opacity;
+    contain: layout style paint;
+  }
+
+  /* Pause animations when not visible */
+  .animation-paused .animate-pulse,
+  .animation-paused .animate-bounce,
+  .animation-paused .animate-spin {
+    animation-play-state: paused;
+  }
+
+  /* Optimized animations with GPU acceleration */
+  .animate-pulse-optimized {
+    animation: pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-gpu {
+    animation: bounce-gpu 1s infinite;
+  }
+
+  .animate-spin-gpu {
+    animation: spin-gpu 1s linear infinite;
+  }
+}
+
+/* Optimized keyframes */
+@keyframes pulse-optimized {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounce-gpu {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes spin-gpu {
+  from {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
