@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",                    // ← enable JSX
+    "esModuleInterop": true,               // ← allow default imports
+    "allowSyntheticDefaultImports": true,  // ← same
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,                        // Vite will emit
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",                        // for your alias
+    "paths": {
+      "@/*": ["src/*"]                     // "@/foo" → "client/src/foo"
+    },
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}

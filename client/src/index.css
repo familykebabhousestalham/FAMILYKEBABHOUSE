@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Now border-border exists: */
+.card {
+  @apply border border-border rounded-lg;
+}
 html {
   scroll-behavior: smooth;
   /* scroll-padding-top: 8rem;    mobile offset for sticky navigation - disabled for dynamic offset */

@@ -1,35 +1,34 @@
+// server/index.ts
 import express, { Request, Response, NextFunction } from "express";
+import "dotenv/config";
+
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import "dotenv/config";
+import { db } from "./db"; // Ensure db is typed with shared/schema
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// request timing + JSON-response logging middleware
+// ——— Request logging middleware ———
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | null = null;
+  let jsonBody: any = null;
 
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
+  const origJson = res.json;
+  res.json = function (body, ...args) {
+    jsonBody = body;
+    return origJson.call(this, body, ...args);
   };
 
   res.on("finish", () => {
-    const duration = Date.now() - start;
     if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-      log(logLine);
+      const ms = Date.now() - start;
+      let line = `${req.method} ${path} ${res.statusCode} in ${ms}ms`;
+      if (jsonBody) line += ` :: ${JSON.stringify(jsonBody)}`;
+      if (line.length > 80) line = line.slice(0, 79) + "…";
+      log(line);
     }
   });
 
@@ -37,34 +36,30 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  const server = await registerRoutes(app);
+  // 1) Wire your typed SQLite db into your routes
+  const server = await registerRoutes(app, db);
 
-  // typed error handler
-  app.use((
-    err: any,
-    _req: Request,
-    res: Response,
-    _next: NextFunction
-  ) => {
-    const status = err.status ?? err.statusCode ?? 500;
-    const message = err.message ?? "Internal Server Error";
-    res.status(status).json({ message });
-    throw err;
-  });
+  // 2) JSON error handler
+  app.use(
+    (err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status ?? err.statusCode ?? 500;
+      res.status(status).json({ message: err.message ?? "Internal Server Error" });
+      // rethrow if you need to crash in dev
+      throw err;
+    }
+  );
 
-  // dev vs prod static/Vite setup
+  // 3) Dev vs Prod: Vite‐middleware or static‐serve
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // numeric port + host, read from env with fallbacks
+  // 4) Launch
   const port = parseInt(process.env.PORT ?? "5000", 10);
   const host = process.env.HOST ?? "0.0.0.0";
-
   server.listen(port, host, () => {
-    // display "localhost" instead of "0.0.0.0" for clickable URL
     const displayHost = host === "0.0.0.0" ? "localhost" : host;
     log(`🚀 Listening on http://${displayHost}:${port}`);
   });

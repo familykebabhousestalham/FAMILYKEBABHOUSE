@@ -1,32 +1,34 @@
+// server/routes.ts
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import type { AppDb } from "./db";
+import { createStorage } from "./storage";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // API route to get all menu items
+export async function registerRoutes(
+  app: Express,
+  db: AppDb
+): Promise<Server> {
+  const storage = createStorage(db);
+
   app.get("/api/menu", async (_req, res) => {
     try {
-      const menuItems = await storage.getAllMenuItems();
-      res.json(menuItems);
-    } catch (error) {
-      console.error("Error fetching menu items:", error);
+      const items = await storage.getAllMenuItems();
+      res.json(items);
+    } catch (err) {
+      console.error("Error fetching menu items:", err);
       res.status(500).json({ error: "Failed to fetch menu items" });
     }
   });
 
-  // API route to get menu items by category
   app.get("/api/menu/:category", async (req, res) => {
     try {
-      const { category } = req.params;
-      const menuItems = await storage.getMenuItemsByCategory(category);
-      res.json(menuItems);
-    } catch (error) {
-      console.error("Error fetching menu items by category:", error);
+      const items = await storage.getMenuItemsByCategory(req.params.category);
+      res.json(items);
+    } catch (err) {
+      console.error("Error fetching menu items by category:", err);
       res.status(500).json({ error: "Failed to fetch menu items" });
     }
   });
 
-  const httpServer = createServer(app);
-
-  return httpServer;
+  return createServer(app);
 }

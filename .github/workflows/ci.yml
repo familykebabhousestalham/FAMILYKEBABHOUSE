@@ -16,8 +16,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages  # This ensures deployment to the proper environment
 
     steps:
       # 1. Checkout the repository code so the job has access to your files
