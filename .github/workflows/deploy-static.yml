@@ -19,6 +19,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # ← THIS is required by actions/deploy-pages@v4
+    environment:
+      name: github-pages
+      url: https://familykebabhousestalham.github.io/FAMILYKEBABHOUSE/
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -26,7 +31,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          enablement: all     # ← auto-create & enable GitHub Pages
+          enablement: all
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
