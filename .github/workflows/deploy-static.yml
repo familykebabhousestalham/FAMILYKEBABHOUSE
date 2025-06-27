@@ -25,11 +25,12 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: all     # ← auto-create & enable GitHub Pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the contents of the docs folder (your static site)
           path: docs
 
       - name: Deploy to GitHub Pages
