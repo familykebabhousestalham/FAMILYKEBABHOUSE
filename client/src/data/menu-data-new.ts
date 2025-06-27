@@ -738,7 +738,7 @@ export const menuData: MenuItemData[] = [
     priceLarge: 14.00,
   },
   {
-    id: "half-kebab",
+    id: "halep-kebab",
     name: "🥙 Half Kebab",
     description: "Doner kebab served in a takeaway container over hot sliced pitta with onion, topped with special sauce",
     category: "kebabs",

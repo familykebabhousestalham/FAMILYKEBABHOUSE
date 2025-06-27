@@ -13,13 +13,12 @@ import { Phone, Keyboard, Eye } from "lucide-react";
 
 import { categories } from "@/data/menu-data";
 import { menuData } from "@/data/menu-data-new";
-
 // Map category → header image
 const menuImages: Record<string, string> = {
   kebabs: "https://images.unsplash.com/photo-1529042410759-befb1204b468?...",
   pizzas: "https://images.unsplash.com/photo-1513104890138-7c749659a591?...",
-  "garlic-bread-pizza-extras": "https://images.unsplash.com/photo-1576107232684-1279f390859f?...",
-  // …and URLs for each of your other categories…
+  "garlic-bread-pizza-extras": "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=1200&h=800",
+  // Add URLs for other categories as needed
 };
 const defaultImage = "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?...";
 
@@ -48,7 +47,7 @@ export default function Menu() {
       case "pizzas":
         return "🍕 100% DAILY FRESH DOUGH – Made with authentic ingredients";
       case "garlic-bread-pizza-extras":
-        return "🧄 Fresh garlic bread & pizza toppings";
+        return "🧄 Fresh garlic bread & pizza extras";
       case "lunch-time-offers":
         return "⏰ Available 12:00–14:30 Daily";
       // …your other custom descriptions…
@@ -182,11 +181,12 @@ export default function Menu() {
             <div className="lg:col-span-2">
               <AnimatePresence mode="wait">
                 <MenuCategory
-                  key={activeCategory}
-                  title={getCategoryInfo(activeCategory).name}
-                  description={getCategoryDescription(activeCategory)}
-                  items={currentCategoryItems}
-                  icon={getCategoryInfo(activeCategory).icon}
+                key={activeCategory}
+                title={getCategoryInfo(activeCategory).name}
+                description={getCategoryDescription(activeCategory)}
+                items={currentCategoryItems}
+                icon={getCategoryInfo(activeCategory).icon}
+                focusedIndex={focusedItemIndex}   
                 />
               </AnimatePresence>
             </div>

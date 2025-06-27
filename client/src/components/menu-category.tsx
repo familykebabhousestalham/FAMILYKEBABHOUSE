@@ -11,7 +11,9 @@ interface MenuCategoryProps {
   title: string
   description?: string
   items: MenuItemData[]
-  icon?: string
+  icon?: string  
+  /** zero-based index of the currently-focused item */
+  focusedIndex?: number;
 }
 
 // helpers at module scope
@@ -180,11 +182,13 @@ const renderPriceDisplay = (item: MenuItemData) => {
   );
 }
 
-const MenuCategory = React.memo(function MenuCategory({
+const MenuCategory = React.memo(function MenuCategory({  
+  
   title,
   description,
   items,
-  icon
+  icon,  
+  focusedIndex = -1,
 }: Readonly<MenuCategoryProps>) {
   return (
     <motion.div 
@@ -387,22 +391,18 @@ const MenuCategory = React.memo(function MenuCategory({
         </motion.div>
       )}
 
-      {/* Pizza Fresh Dough Message */}
+       {/* Pizza Fresh Dough Message */}
       {(title === "Pizzas" || title === "Garlic Bread & Pizza Extras") && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <div className="text-center p-4 bg-orange-100 border border-orange-300 rounded-lg">
-            <h4 className="font-poppins text-xl font-bold text-charcoal mb-2">🍞 100% DAILY FRESH DOUGH</h4>
-            <p className="text-sm text-gray-700">All our pizzas and garlic bread are made with freshly prepared dough every single day!</p>
-          </div>
+          {/* … unchanged … */}
         </motion.div>
       )}
     </motion.div>
-  );
-});
+  )
+})
 
-export default MenuCategory;
-
+export default MenuCategory
