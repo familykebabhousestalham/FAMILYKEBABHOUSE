@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import "dotenv/config";
 
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, log } from "./vite";
 import { db } from "./db"; // Ensure db is typed with shared/schema
 
 const app = express();
@@ -43,18 +43,21 @@ app.use((req, res, next) => {
   app.use(
     (err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status ?? err.statusCode ?? 500;
-      res.status(status).json({ message: err.message ?? "Internal Server Error" });
+      res
+        .status(status)
+        .json({ message: err.message ?? "Internal Server Error" });
       // rethrow if you need to crash in dev
       throw err;
     }
   );
 
-  // 3) Dev vs Prod: Vite‐middleware or static‐serve
+  // 3) Dev vs Prod: only Vite‐middleware in development
   if (app.get("env") === "development") {
+    // in dev we proxy through Vite for HMR
     await setupVite(app, server);
-  } else {
-    serveStatic(app);
   }
+  // in production we no longer serve any static files here—
+  // your client is now a separate Render Static Site
 
   // 4) Launch
   const port = parseInt(process.env.PORT ?? "5000", 10);
