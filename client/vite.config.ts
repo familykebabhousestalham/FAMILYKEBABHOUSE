@@ -1,14 +1,14 @@
 // client/vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path  from 'path'
+import path from 'path'
 
-// Capacitor sets CAPACITOR_PLATFORM in its build env, so we can detect “native” builds
+// Capacitor sets CAPACITOR_PLATFORM in its build env; keep native builds relative.
 const isNative = !!process.env.CAPACITOR_PLATFORM
 
 export default defineConfig({
-  // ./ for packaged apps, your GH Pages path otherwise
-  base: isNative ? './' : '/FAMILYKEBABHOUSE/',
+  // Always serve assets relative to the current HTML file
+  base: './',
 
   plugins: [react()],
 
@@ -21,10 +21,7 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        // if you’re already using tailwind, keep it here
         require('tailwindcss'),
-
-        // Autoprefixer will generate -webkit- & -ms- plus the standard property
         require('autoprefixer')({
           overrideBrowserslist: [
             '> 1%',
