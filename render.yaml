@@ -1,0 +1,24 @@
+services:
+  # 1) Your API service (Express)
+  - type: web
+    name: family-kebab-api
+    env: node
+    plan: free
+    branch: main
+    buildCommand: cd server && npm ci && npm run build
+    startCommand: node server/dist/index.js
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:./dev.db
+
+  # 2) Your Static UI (Vite/React)
+  - type: static-site
+    name: family-kebab-frontend
+    env: static
+    plan: free
+    branch: main
+    buildCommand: cd client && npm ci && npm run build
+    publishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://family-kebab-api.onrender.com
