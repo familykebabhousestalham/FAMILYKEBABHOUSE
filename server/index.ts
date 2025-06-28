@@ -1,27 +1,38 @@
 // server/index.ts
 import express, { Request, Response, NextFunction } from "express";
 import "dotenv/config";
+import cors from "cors";
 
 import { registerRoutes } from "./routes";
 import { setupVite, log } from "./vite";
-import { db } from "./db"; // Ensure db is typed with shared/schema
+import { db } from "./db";
 
 const app = express();
+
+// ——— Enable CORS —————————————————————————————————————————————————————————
+app.use(
+  cors({
+    origin:
+      process.env.CORS_ORIGIN ??
+      "https://family-kebab-frontend.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
+
+// ——— Body parsing ————————————————————————————————————————————————————————
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// ——— Request logging middleware ———
+// ——— Request logging —————————————————————————————————————————————————————
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
   let jsonBody: any = null;
-
   const origJson = res.json;
   res.json = function (body, ...args) {
     jsonBody = body;
     return origJson.call(this, body, ...args);
   };
-
   res.on("finish", () => {
     if (path.startsWith("/api")) {
       const ms = Date.now() - start;
@@ -31,35 +42,28 @@ app.use((req, res, next) => {
       log(line);
     }
   });
-
   next();
 });
 
 (async () => {
-  // 1) Wire your typed SQLite db into your routes
+  // 1) Register routes
   const server = await registerRoutes(app, db);
 
   // 2) JSON error handler
-  app.use(
-    (err: any, _req: Request, res: Response, _next: NextFunction) => {
-      const status = err.status ?? err.statusCode ?? 500;
-      res
-        .status(status)
-        .json({ message: err.message ?? "Internal Server Error" });
-      // rethrow if you need to crash in dev
-      throw err;
-    }
-  );
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status ?? err.statusCode ?? 500;
+    res
+      .status(status)
+      .json({ message: err.message ?? "Internal Server Error" });
+    if (app.get("env") === "development") throw err; // crash in dev so you see the stack
+  });
 
-  // 3) Dev vs Prod: only Vite‐middleware in development
+  // 3) Vite‐middleware only in dev
   if (app.get("env") === "development") {
-    // in dev we proxy through Vite for HMR
     await setupVite(app, server);
   }
-  // in production we no longer serve any static files here—
-  // your client is now a separate Render Static Site
 
-  // 4) Launch
+  // 4) Start
   const port = parseInt(process.env.PORT ?? "5000", 10);
   const host = process.env.HOST ?? "0.0.0.0";
   server.listen(port, host, () => {

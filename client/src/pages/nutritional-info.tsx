@@ -23,16 +23,17 @@ export default function NutritionalInfo(props: NutritionalInfoProps) {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await fetch('/api/menu');
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/menu`
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch menu items');
         }
-        const data = await response.json();
+        const data: MenuItem[] = await response.json();
         setMenuItems(data);
         setFilteredItems(data);
         setLoading(false);
       } catch (err) {
-        // Handle error type for better error reporting
         let message = 'Failed to load nutritional information';
         if (err instanceof Error) {
           message = err.message || message;
@@ -50,11 +51,11 @@ export default function NutritionalInfo(props: NutritionalInfoProps) {
     let filtered = menuItems;
 
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(item => item.category === selectedCategory);
+      filtered = filtered.filter((item: MenuItem) => item.category === selectedCategory);
     }
 
     if (searchTerm) {
-      filtered = filtered.filter(item =>
+      filtered = filtered.filter((item: MenuItem) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description?.toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -64,7 +65,7 @@ export default function NutritionalInfo(props: NutritionalInfoProps) {
   }, [searchTerm, selectedCategory, menuItems]);
 
   // Get unique categories
-  const categories = ["all", ...Array.from(new Set(menuItems.map(item => item.category)))];
+  const categories = ["all", ...Array.from(new Set(menuItems.map((item: MenuItem) => item.category)))];
 
   // Helper function to format allergens
   const formatAllergens = (allergens: string | string[] | null) => {
