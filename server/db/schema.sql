@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS menu_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  description TEXT,
+  category TEXT NOT NULL,
+  price_small REAL,
+  price_medium REAL,
+  price_large REAL,
+  price_x_large REAL,
+  price_10_inches REAL,
+  price_12_inches REAL,
+  single_price REAL,
+  is_special BOOLEAN DEFAULT FALSE,
+  is_available BOOLEAN DEFAULT TRUE,
+  calories REAL,
+  protein REAL,
+  carbs REAL,
+  fat REAL,
+  fiber REAL,
+  sodium REAL,
+  allergens TEXT,
+  ingredients TEXT
+);
