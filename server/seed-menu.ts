@@ -7,15 +7,15 @@ import { menuItems } from "../shared/schema";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
-// ESM‐safe __dirname
+// __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = dirname(__filename);
 
-// Paths relative to this file
+// Paths relative to the source file, not to dist/
 const menuJsonPath = resolve(__dirname, "db", "menu_items.json");
 const ddlPath      = resolve(__dirname, "db", "schema.sql");
 const dbFile       =
-  process.env.DATABASE_URL?.replace(/^sqlite:/, "").trim() ||
+  process.env.DATABASE_URL?.replace(/^sqlite:/, "").trim() ??
   resolve(__dirname, "../dev.db");
 
 // Load JSON dataset
