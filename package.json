@@ -7,7 +7,7 @@
   "scripts": {
     "prepare-docs": "shx rm -rf docs && shx mkdir docs && shx cp -R client/dist/* docs",
     "build:client": "npm --prefix ./client install && npm --prefix ./client run build",
-    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && cp -R server/db dist/db",
     "build": "npm run build:client && npm run build:server",
     "start": "cross-env NODE_ENV=production DATABASE_URL=\"sqlite:./dev.db\" node dist/index.js",
     "seed": "cross-env DATABASE_URL=sqlite:./dev.db tsx server/seed-menu.ts"
