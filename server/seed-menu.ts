@@ -6,12 +6,19 @@ import * as schema from "../shared/schema";
 import { menuItems } from "../shared/schema";
 import { resolve } from "path";
 
-// ─── Resolve all file paths from project root ─────────────────────────────────
+// ─── ESM‐safe __dirname + CLI runner detection ─────────────────────────────────
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = dirname(__filename);
+
+// ─── Resolve all file paths from the server folder ────────────────────────────
+// Note: projectRoot is the '/server' folder when you run `npm --prefix server run seed`
 const projectRoot  = process.cwd();
 const menuJsonPath = resolve(projectRoot, "db", "menu_items.json");
 const ddlPath      = resolve(projectRoot, "db", "schema.sql");
 const dbFile       =
-  process.env.DATABASE_URL?.replace(/^sqlite:/, "").trim() ??
+  process.env.DATABASE_URL?.replace(/^sqlite:/, "").trim() ||
   resolve(projectRoot, "dev.db");
 
 // ─── Load JSON dataset ────────────────────────────────────────────────────────
@@ -79,4 +86,17 @@ export async function seedMenu() {
   } finally {
     rawDb.close();
   }
+}
+
+// ─── CLI runner — seeds when this file is invoked directly ───────────────────
+if (import.meta.url === `file://${__filename}`) {
+  seedMenu()
+    .then(() => {
+      console.log("🎉 Menu seeding completed successfully");
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
 }
