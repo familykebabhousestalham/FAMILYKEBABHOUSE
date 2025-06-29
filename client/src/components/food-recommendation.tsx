@@ -193,15 +193,22 @@ export default function FoodRecommendation() {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [additionalRecommendations, setAdditionalRecommendations] = useState<RecommendedDish[]>([]);
 
-  // Fetch menu data from your database
+  // Fetch menu data from your live API
   const { data: menuItems = [], isLoading } = useQuery({
-    queryKey: ['/api/menu'],
-    queryFn: async () => {
-      const response = await fetch('/api/menu');
-      if (!response.ok) throw new Error('Failed to fetch menu');
-      return response.json();
-    }
-  });
+  queryKey: ['menuItems'],
+  queryFn: async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/menu`
+    );
+    if (!response.ok) throw new Error('Failed to fetch menu');
+    return response.json();
+  }
+});
+
+// DEBUG: verify we actually got data
+console.log('AI got menuItems:', menuItems);
+console.log('AI got menuItems:', menuItems);
+
 
   // Convert menu items to recommendation format
   const allDishes = menuItems.map(mapMenuItemToRecommendation);
