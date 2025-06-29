@@ -8,11 +8,11 @@ import { resolve } from "path";
 
 // ─── Resolve all file paths from project root ─────────────────────────────────
 const projectRoot  = process.cwd();
-const menuJsonPath = resolve(projectRoot, "server", "db", "menu_items.json");
-const ddlPath      = resolve(projectRoot, "server", "db", "schema.sql");
+const menuJsonPath = resolve(projectRoot, "db", "menu_items.json");
+const ddlPath      = resolve(projectRoot, "db", "schema.sql");
 const dbFile       =
   process.env.DATABASE_URL?.replace(/^sqlite:/, "").trim() ??
-  resolve(projectRoot, "server", "dev.db");
+  resolve(projectRoot, "dev.db");
 
 // ─── Load JSON dataset ────────────────────────────────────────────────────────
 const menuData: Record<string, any>[] = JSON.parse(
