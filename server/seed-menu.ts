@@ -5,9 +5,13 @@ import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import * as schema from '../shared/schema';
 import { menuItems } from '../shared/schema';
-import { menuData } from '../client/src/data/menu-data-new';
 
-// 1) Locate or create the file
+// ✅ Load downloaded JSON dataset with nutrition
+const menuData: Array<Record<string, any>> = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, 'db', 'menu_items.json'), 'utf8')
+);
+
+// 1️⃣ Locate or create the database file
 const dbFile =
   process.env.DATABASE_URL?.replace(/^sqlite:/, '').trim() ??
   path.resolve(__dirname, '../dev.db');
@@ -16,7 +20,7 @@ if (!fs.existsSync(dbFile)) fs.writeFileSync(dbFile, '');
 const rawDb = new Database(dbFile);
 const db = drizzle(rawDb, { schema });
 
-// 2) Apply your DDL from schema.sql
+// 2️⃣ Apply DDL from schema.sql
 const ddlPath = path.resolve(__dirname, 'db', 'schema.sql');
 if (fs.existsSync(ddlPath)) {
   const ddl = fs.readFileSync(ddlPath, 'utf8');
@@ -27,10 +31,10 @@ if (fs.existsSync(ddlPath)) {
 }
 
 async function seedMenu() {
-  console.log('Starting menu seeding…');
+  console.log('🚀 Starting menu seeding…');
   try {
     await db.delete(menuItems);
-    console.log('Cleared existing menu items');
+    console.log('🧹 Cleared existing menu items');
 
     const insertData = menuData.map((item) => ({
       name: item.name,
@@ -59,14 +63,13 @@ async function seedMenu() {
         : item.ingredients ?? null,
     }));
 
-    // cast to any so TS allows number flags, and better-sqlite3 can bind 0/1
     await db.insert(menuItems).values(insertData as any);
-    console.log(`Successfully seeded ${insertData.length} menu items`);
+    console.log(`✅ Successfully seeded ${insertData.length} menu items`);
 
     const rows = await db.select().from(menuItems);
-    console.log(`Database now contains ${rows.length} menu items`);
+    console.log(`📊 Database now contains ${rows.length} menu items`);
   } catch (err) {
-    console.error('Error seeding menu:', err);
+    console.error('❌ Error seeding menu:', err);
     throw err;
   } finally {
     rawDb.close();
@@ -76,7 +79,7 @@ async function seedMenu() {
 if (require.main === module) {
   seedMenu()
     .then(() => {
-      console.log('Menu seeding completed successfully');
+      console.log('🎉 Menu seeding completed successfully');
       process.exit(0);
     })
     .catch(() => process.exit(1));
