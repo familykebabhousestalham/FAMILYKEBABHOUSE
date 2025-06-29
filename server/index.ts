@@ -7,9 +7,13 @@ import { registerRoutes } from "./routes";
 import { setupVite, log } from "./vite";
 import { db } from "./db";
 
+// AUTO-SEED: import your seeder and table
+import { seedMenu } from "./seed-menu";
+import { menuItems } from "../shared/schema";
+
 const app = express();
 
-// ——— Enable CORS —————————————————————————————————————————————————————————
+// — Enable CORS
 app.use(
   cors({
     origin:
@@ -19,11 +23,11 @@ app.use(
   })
 );
 
-// ——— Body parsing ————————————————————————————————————————————————————————
+// — Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// ——— Request logging —————————————————————————————————————————————————————
+// — Request logging
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -46,24 +50,36 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // 1) Register routes
+  // — AUTO-SEED ON STARTUP
+  try {
+    const rows = await db.select().from(menuItems);
+    if (rows.length === 0) {
+      log("🔄 No menu items found, seeding database…");
+      await seedMenu();
+      log("✅ Auto-seeding complete.");
+    } else {
+      log(`ℹ️  Found ${rows.length} menu items, skipping auto-seed.`);
+    }
+  } catch (err: any) {
+    log("❌ Error during auto-seed:", err);
+  }
+
+  // — Register routes
   const server = await registerRoutes(app, db);
 
-  // 2) JSON error handler
+  // — JSON error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status ?? err.statusCode ?? 500;
-    res
-      .status(status)
-      .json({ message: err.message ?? "Internal Server Error" });
-    if (app.get("env") === "development") throw err; // crash in dev so you see the stack
+    res.status(status).json({ message: err.message ?? "Internal Server Error" });
+    if (app.get("env") === "development") throw err; // crash in dev for stack
   });
 
-  // 3) Vite‐middleware only in dev
+  // — Vite middleware (dev only)
   if (app.get("env") === "development") {
     await setupVite(app, server);
   }
 
-  // 4) Start
+  // — Start server
   const port = parseInt(process.env.PORT ?? "5000", 10);
   const host = process.env.HOST ?? "0.0.0.0";
   server.listen(port, host, () => {
